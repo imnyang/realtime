@@ -3,6 +3,7 @@
 ./gradlew clean paperJar
 
 plugins=(
+'https://github.com/monun/auto-reloader/releases/latest/download/AutoReloader.jar'
 )
 
 script=$(basename "$0")
