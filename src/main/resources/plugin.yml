@@ -1,6 +1,7 @@
 name: ${rootProject.name.capitalize()}
 version: $version
 main: $group.${rootProject.name}.plugin.${rootProject.name.capitalize()}Plugin
+api-version: 1.17
 libraries:
   - io.github.monun:tap:4.1.1
   - io.github.monun:kommand:2.2.0
