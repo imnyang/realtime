@@ -28,23 +28,23 @@ dependencies {
     testImplementation("org.mockito:mockito-core:3.6.28")
 }
 
+project.extra.set("pluginName", name.split('-').joinToString("") { it.capitalize() })
+
 tasks {
     processResources {
         filesMatching("**/*.yml") {
             expand(project.properties)
+            expand(project.extra.properties)
         }
     }
 
     test {
         useJUnitPlatform()
-        doLast {
-            file("logs").deleteRecursively()
-        }
     }
 
     create<Jar>("paperJar") {
         from(sourceSets["main"].output)
-        archiveBaseName.set(project.name.capitalize())
+        archiveBaseName.set(project.extra.properties["pluginName"].toString())
         archiveVersion.set("") // For bukkit plugin update
 
         doLast {
