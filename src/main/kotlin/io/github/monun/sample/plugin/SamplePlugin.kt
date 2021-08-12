@@ -5,6 +5,4 @@ import org.bukkit.plugin.java.JavaPlugin
 /**
  * @author Monun
  */
-class SamplePlugin : JavaPlugin() {
-
-}
+class SamplePlugin : JavaPlugin()
