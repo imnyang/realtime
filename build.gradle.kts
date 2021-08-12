@@ -13,18 +13,23 @@ java {
 repositories {
     mavenCentral()
     maven(url = "https://papermc.io/repo/repository/maven-public/")
+    maven("https://jitpack.io")
+    maven("https://repo.codemc.org/repository/maven-public/")
+
 }
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT")
 
     implementation(kotlin("stdlib"))
+    implementation("dev.jorel.CommandAPI:commandapi-shade:6.3.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.2")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.2")
     testImplementation("org.mockito:mockito-core:3.6.28")
 }
 
+project.extra.set("packageName", name.replace("-", ""))
 project.extra.set("pluginName", name.split('-').joinToString("") { it.capitalize() })
 
 tasks {
@@ -40,6 +45,20 @@ tasks {
     }
 
     create<Jar>("paperJar") {
+        from(sourceSets["main"].output)
+        archiveBaseName.set(project.extra.properties["pluginName"].toString())
+        archiveVersion.set("") // For bukkit plugin update
+
+        doLast {
+            copy {
+                from(archiveFile)
+                val plugins = File(rootDir, ".debug/plugins/")
+                into(if (File(plugins, archiveFileName.get()).exists()) File(plugins, "update") else plugins)
+            }
+        }
+    }
+
+    shadowJar {
         from(sourceSets["main"].output)
         archiveBaseName.set(project.extra.properties["pluginName"].toString())
         archiveVersion.set("") // For bukkit plugin update
