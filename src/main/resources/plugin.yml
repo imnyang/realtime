@@ -5,3 +5,4 @@ api-version: 1.18
 libraries:
   - org.jetbrains.kotlin:kotlin-stdlib:1.6.0
   - org.jetbrains.kotlin:kotlin-reflect:1.6.0
+  - org.shredzone.commons:commons-suncalc:3.5
