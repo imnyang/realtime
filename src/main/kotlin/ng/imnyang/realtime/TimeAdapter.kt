@@ -1,4 +1,4 @@
-package io.github.monun.realtime.plugin
+package ng.imnyang.realtime
 
 import java.time.Instant
 
@@ -20,7 +20,7 @@ class TimeAdapter(val from: Instant, val to: Instant, type: Type) {
     }
 
     enum class Type(val offset: Int, val period: Int) {
-        DAY(22850, 14300), NIGHT(37150, 9700);
+        DAY(22850, 14300),
+        NIGHT(37150, 9700)
     }
-
 }

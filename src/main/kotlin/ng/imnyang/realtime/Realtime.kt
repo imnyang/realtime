@@ -1,4 +1,4 @@
-package io.github.monun.realtime.plugin
+package ng.imnyang.realtime
 
 import org.bukkit.Bukkit
 import org.bukkit.GameRule
@@ -15,7 +15,7 @@ import java.util.*
 /**
  * @author Monun
  */
-class RealtimePlugin : JavaPlugin(), Runnable {
+class Realtime : JavaPlugin(), Runnable {
     private var latitude = 0.0
 
     private var longitude = 0.0
